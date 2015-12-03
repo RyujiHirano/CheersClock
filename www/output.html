@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="components/loader.js"></script>
+    <script>
+        //inputで保存したデータを取得するよ
+        var count = parseInt(localStorage.getItem("time"));
+        var last = parseInt(localStorage.getItem("last"));
+        $(function(){ 
+            $("div").css("height",$(window).height()*0.95);
+            $("div").css("margin",$(window).height()*0.025);
+            $("div").css("margin-top",$(window).height()*0.1);
+            $("div").css("padding-bottom",$(window).height()*0.1);
+            $("#count").html("あと "+count+" 分"); 
+        });
+        //60秒間隔で更新していくよ
+        window.setInterval(function(){ output(); },60000);
+        //
+        localStorage.setItem("time", count);
+        function output(){
+            if(count == last){
+                //5秒振動するよ
+                navigator.notification.vibrate(5000);
+            }
+            if(count == 0){
+                navigator.notification.vibrate(5000);
+                alert("時間がきました");
+                localStorage.clear();
+                location.href = "index.html";
+            }
+            count--;
+            //htmlは中身を保存するよ
+            $("#count").html("あと "+count+" 分");
+        }
+        function reset(){
+            localStorage.clear();
+            location.href = "input.html";
+        }
+    </script>
+    <style>
+        div{
+            background-image: url("picture/beer.png"); 
+            background-size: contain;
+            background-repeat: no-repeat; 
+        }
+    </style>
+</head>
+<body>
+<div>
+    <span id="count"></span><br />
+    <span id="reset" onclick="reset()">←戻る</span>
+</div>
+</body>
+</html>

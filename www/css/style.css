@@ -1,0 +1,60 @@
+@font-face{
+    font-family: 'holidayM';
+    src: url(../HOLIDAYM.eot);
+    src: url(../HOLIDAYM.eot?iefix) format('eot'),
+        url(../HOLIDAYM.TTF) format('truetype'),
+        url(../HOLIDAYM.woff) format('woff');
+}
+*{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 1.2em;
+}
+/*marginは外側に枠を、paddingは内側に枠を作るんだよ。*/
+body{
+    width: 100%;
+    height: 100%;
+    font-family: 'holidayM';
+}
+h1{
+    margin: 20px 0;
+    /*前者は上下、後者は左右だよ。*/
+}
+#tap{
+    position: absolute;
+    bottom: 0;
+    left: 44%;
+    /*50%だと”T”が中央に来ちゃうので...だよ。*/
+    margin-bottom: 30px;
+}
+#input{
+    background: rgba(240,179,37,0.5);
+    width: 90%;
+    margin: 0 auto;
+    border: 1px solid rgba(240,179,37,1);
+    border-radius: 20px; 
+}
+input{
+    width: 90%;
+    margin-top: 10px;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(173,140,56,1);
+}
+button{
+    padding: 10px 40px;
+    background: rgba(217,195,12,0.8);
+    border: 1px solid rgba(173,140,56,0.9);
+    border-radius: 10px; 
+}
+#reset{
+    position: absolute;
+    bottom: 0;
+    left: 5%;
+    /*50%だと”T”が中央に来ちゃうので...だよ。*/
+    margin-bottom: 25px;
+}
+#count{
+    background: rgba(255,255,255,1);
+    border: 3px double rgba(0,0,0,1); 
+}

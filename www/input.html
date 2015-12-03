@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="components/loader.js"></script>
+    <script>
+        $(function(){
+            $("#input").css("height",$(window).height()*0.95);
+            $("#input").css("margin",$(window).height()*0.025);
+            $(".inputs").css("padding-top",$(window).height()*0.09);
+            $(".inputs").css("padding-bottom",$(window).height()*0.09);
+            if(localStorage.getItem("start")) location.href = "output.html";
+        });
+        function post(){
+            //varは変数を新しく作るよ
+            var time = parseInt($("#time").val());
+            var last = parseInt($("#last").val());
+            //&&はtimeとlastの両方に入力されていたら、、だよ
+            if(time && last){
+                if(time > last){
+                    var tf = window.confirm("飲み放題の時間："+time+"分\nラストオーダー："+last+"分\nでよろしいですか？");
+                    if(tf){
+                        localStorage.setItem("time",time);
+                        localStorage.setItem("last",last);
+                        localStorage.setItem("start","OK");
+                        location.href = "output.html";
+                    }
+                }else{
+                    //\はエスケープ文字だよ。\nで改行の意味を持つよ。
+                    alert("ラストオーダーの時間をもう一度確認してください");
+                }
+                //alertはダイアログが出てくるよ。/と:は見栄えの問題だよ。＋は文字列にくっつけるんだよ。
+                //alert("time:"+time+"/last:"+last);    
+            }else{
+                alert("時間をすべて入力してください");
+            }
+           
+            
+        }
+    </script>
+    <style>
+        body{
+            background-image: url("picture/background.jpg");
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- divはボックス（枠組み）ですよ -->
+    <div id="input">
+        <div class="inputs">
+            <!-- h2は見出し２みたいなもんですよ -->
+            <h2>飲み放題の時間</h2>
+            <!-- 時間打つとこですよ。名前はtimeですよ -->
+            <input type="number" id="time">
+        </div>
+        <div class="inputs">
+            <h2>ラストオーダー</h2>
+            <!-- 時間打つとこですよ。名前はlastですよ -->
+            <input type="number" id="last">
+        </div>
+        <!--br/は改行だよ-->
+        <br />
+        <button onclick="post()">決定</button>
+    </div>
+</body>
+</html>
